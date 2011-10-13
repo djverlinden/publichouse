@@ -6,3 +6,5 @@ lib
 classes
 build
 ./publichouse
+test/examples/*
+.DS_Store
