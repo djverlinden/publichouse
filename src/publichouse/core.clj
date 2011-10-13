@@ -41,3 +41,20 @@
           lname (last exploded)
           fname (apply str (interpose " " (butlast exploded)))]
       (Author. fname lname))))
+
+(defn make-ebook
+  [profile-data]
+  (let [book (Book.)]
+    (doto (.getMetadata book)
+      (.addTitle (profile-data :title))
+      (.addAuthor (make-author (profile-data :author))))
+    (doseq [section (profile-data :sections)]
+      (.addSection
+       book
+       (first section)
+       (Resource. 
+        (-> (apply str (e/emit* (second section))) 
+            (.getBytes)
+            (ByteArrayInputStream.))
+        (str (gensym) ".html"))))
+    book))

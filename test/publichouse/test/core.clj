@@ -23,7 +23,15 @@
 
 (def test-profile-data
   {:title "Test EPUB Book"
-   :author "Mark M. Fredrickson" ; could also be ["Mark M." "Fredrickson"]
-   :sections [["In which the book starts" (list [:h2 "A subtitle"] [:p "Some text..."])]
-              ["Conclusion" (list [:h2 "Another subtitle"] [:p "Some more text..."])]]})
+   :author "Mark M. Fredrickson" ; could also be ["Mark M."
+                                 ; "Fredrickson"]
+   ;; Enlive style HTML is a little obtuse... Having a Hiccup ->
+   ;; Enlive interface would be nice. 
+   :sections [["In which the book starts" [{:tag :h2 :content ["A subtitle"]} {:tag :p :content ["Some text"]}]]
+              ["Conclusion" [{:tag :h2 :content ["Another subtitle"]} {:tag :p :content ["Some text"]}]]]})
+              
+
+(deftest making-an-ebook
+  (is (= (class (make-ebook test-profile-data)) nl.siegmann.epublib.domain.Book))
+  (is (= (count (.getContents (make-ebook test-profile-data))) 2)))
 
