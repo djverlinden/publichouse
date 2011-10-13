@@ -14,3 +14,16 @@
     (is (not (string? (brq :content))))
     (is (seq? (brq :content))))) 
 
+(deftest making-authors
+  (let [a1 (make-author "Mark M. Fredrickson")
+        a2 (make-author ["Mark M." "Fredrickson"])]
+    (is (= (class a1) nl.siegmann.epublib.domain.Author))
+    (is (= (class a2) nl.siegmann.epublib.domain.Author))
+    (is (= a1 a2))))
+
+(def test-profile-data
+  {:title "Test EPUB Book"
+   :author "Mark M. Fredrickson" ; could also be ["Mark M." "Fredrickson"]
+   :sections [["In which the book starts" (list [:h2 "A subtitle"] [:p "Some text..."])]
+              ["Conclusion" (list [:h2 "Another subtitle"] [:p "Some more text..."])]]})
+
