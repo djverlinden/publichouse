@@ -29,7 +29,8 @@ this document on their e-readers using software such as
 [Calibre](http://calibre-ebook.com). 
 
 Current profiles include:
-- `cjo`: Cambridge Journals Online, which publishes many academic
+
+* `cjo`: Cambridge Journals Online, which publishes many academic
 journals
 
 ## Installation
@@ -63,11 +64,12 @@ which can be useful when rewriting image links or other relative
 files.
 
 The `transform` form function returns a map with the following keys:
-- `:title`: A string for the title field
-- `:author`:  A string for the author field or a pair of strings for
+
+* `:title`: A string for the title field
+* `:author`:  A string for the author field or a pair of strings for
 first and last name. _Warning_: This field will eventually be a
 sequence of names to accommodate multiple authors.
-- `:sections`: a list of pairs where the first item is the pair is the
+* `:sections`: a list of pairs where the first item is the pair is the
 title and the second item is HTML for the section. If you want section
 to contain their own titles, make sure to prepend an `h1` element with
 the section title. Titles are otherwise only used in the table of
