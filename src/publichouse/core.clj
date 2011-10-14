@@ -27,6 +27,7 @@
 ;;; A profile is a transform of an Enlive html document into a well
 ;;; formed data structure for use in the ebook. The output is a map
 ;;; with the follwoing keys:
+
 ;;; :title => A string for the title field
 ;;; :author => A string for the author field or a pair of strings
 ;;; :sections => a list or vectors of pairs where the first item in
@@ -58,3 +59,8 @@
             (ByteArrayInputStream.))
         (str (gensym) ".html"))))
     book))
+
+(defn write-ebook
+  "Actually write out an ebook to file"
+  [ebook file-name]
+  (.write (EpubWriter.) ebook (FileOutputStream. file-name)))

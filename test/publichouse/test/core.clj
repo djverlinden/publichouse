@@ -1,6 +1,7 @@
 (ns publichouse.test.core
   (:use clojure.test
-        publichouse.core))
+        publichouse.core)
+  (:require [clojure.java.io :as io]))
 
 ; requires you run test/examples/fetch-examples.sh
 ; it might be smart to make this script into a Cake task or function
@@ -30,8 +31,12 @@
    :sections [["In which the book starts" [{:tag :h2 :content ["A subtitle"]} {:tag :p :content ["Some text"]}]]
               ["Conclusion" [{:tag :h2 :content ["Another subtitle"]} {:tag :p :content ["Some text"]}]]]})
               
-
 (deftest making-an-ebook
-  (is (= (class (make-ebook test-profile-data)) nl.siegmann.epublib.domain.Book))
-  (is (= (count (.getContents (make-ebook test-profile-data))) 2)))
+  (let [book (make-ebook test-profile-data)
+        file (str "/tmp/" (gensym) ".epub")]
+    (write-ebook book file) ; for side effect of writing book to disk
+    (is (= (class book) nl.siegmann.epublib.domain.Book))
+    (is (= (count (.getContents book)) 2))
+    (is (.exists (io/as-file file)))))
+
 
