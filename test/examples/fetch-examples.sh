@@ -7,5 +7,4 @@
 wget -k -p "http://journals.cambridge.org/action/displayFulltext?type=6&fid=8368205&jid=PSR&volumeId=105&issueId=03&aid=8368204&fulltextType=RA&fileId=S0003055411000281"
 
 mv journals.cambridge.org besley-ryenal-querol-apsr
-
-
+ln -s "displayFulltext?type=6&fid=8368205&jid=PSR&volumeId=105&issueId=03&aid=8368204&fulltextType=RA&fileId=S0003055411000281" besley-ryenal-querol-apsr/action/main.html

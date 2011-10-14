@@ -40,7 +40,7 @@ There is currently a bug preventing releasing Public House as a
 standalone utility, but adventurous users can clone this repository
 and use [cake](http://github.com/flatland/cake) to run the utility.
 
-    $ git clone git....
+    $ git clone https://github.com/markmfredrickson/publichouse.git
     $ cd publichouse/test/examples
     $ ./fetch-examples.sh
     # paths are relative to the repository root
