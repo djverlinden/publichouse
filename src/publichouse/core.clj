@@ -1,4 +1,5 @@
 (ns publichouse.core
+  (:gen-class :main true)
   (:use [clojure.string :only [split]])
   (:require [net.cgrand.enlive-html :as e]
             [clojure.java.io :as io])
@@ -64,3 +65,24 @@
   "Actually write out an ebook to file"
   [ebook file-name]
   (.write (EpubWriter.) ebook (FileOutputStream. file-name)))
+
+(defn -main
+  "Entry point for command line interface"
+  [profile input output]
+  ;; start with error checking inputs
+  (let [profile-ns (symbol (str "publichouse.profile." profile))
+        input-file (io/as-file input)]
+    (try
+      (require profile-ns)
+      (catch java.io.FileNotFoundException _
+        (do
+          (println "No profile found matching:" profile)
+          (System/exit 1))))
+    (when (not (.exists input-file))
+      (println "Input file not found")
+      (System/exit 2))
+
+    ;; all error checking out of the way, time to make the ebook
+    (println "Starting transformation using profile" profile)
+    (-> (load-html input) ((ns-resolve profile-ns 'transform)) (make-ebook) (write-ebook output))
+    (println "Transformation complete.")))

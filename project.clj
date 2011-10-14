@@ -1,4 +1,5 @@
 (defproject publichouse "0.1.0"
+  :main publichouse.core
   :description "Transform HTML to EPUB"
   :dependencies [[clojure "1.2.1"]
                  [nl.siegmann.epublib/epublib-core "3.0-SNAPSHOT"]
