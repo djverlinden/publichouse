@@ -30,8 +30,9 @@ this document on their e-readers using software such as
 
 Current profiles include:
 
-* `cjo`: Cambridge Journals Online, which publishes many academic
-journals
+* `cjo`: [Cambridge Journals Online](http://journals.cambridge.org), 
+which publishes many academic journals
+* `ar`: Articles from [Annual Reviews](http://www.annualreviews.org/).
 
 ## Installation
 
