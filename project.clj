@@ -8,3 +8,10 @@
   {"psiegman"
    "https://github.com/psiegman/mvn-repo/raw/master/snapshots"})
                
+(deftask ph
+  "Using the `profile`, transform `input` HTML into `output` EPUB"
+  (bake
+   (:require publichouse.core)
+   [[profile input output] (:ph *opts*)]
+   (publichouse.core/-main profile input output)))
+
